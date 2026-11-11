@@ -55,3 +55,14 @@ Data is stored in the user's browser and does not automatically synchronize betw
 - User authentication.
 - Cross-device synchronization.
 - Application reminders.
+
+- ## Screenshots
+
+### Dashboard
+![Dashboard](dashboard.png)
+
+### Applications
+![Applications](applications.png)
+
+### Features
+![Features](features.png)
