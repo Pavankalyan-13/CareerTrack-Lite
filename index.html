@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description"
+        content="CareerTrack Lite helps students manage and track job and internship applications.">
+
+    <title>CareerTrack Lite | Application Manager</title>
+
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+
+<body>
+
+    <!-- Application Layout -->
+    <div class="app-container">
+
+        <!-- Sidebar -->
+        <aside class="sidebar">
+
+            <div class="logo">
+                <h2>Career<span>Track</span></h2>
+                <p>YOUR CAREER COMPANION</p>
+            </div>
+
+            <nav>
+                <a href="#" class="nav-link active" data-view="dashboard">
+                    Dashboard
+                </a>
+
+                <a href="#" class="nav-link" data-view="applications">
+                    Applications
+                </a>
+            </nav>
+
+            <div class="sidebar-footer">
+                <p>Build your future.</p>
+                <small>CareerTrack Lite v1.0</small>
+            </div>
+
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+
+            <!-- Header -->
+            <header class="topbar">
+                <div>
+                    <p class="welcome-text">WELCOME TO CAREERTRACK</p>
+                    <h1 id="pageTitle">Dashboard</h1>
+                </div>
+
+                <button id="addApplicationBtn">
+                    + Add Application
+                </button>
+            </header>
+
+            <!-- Dashboard -->
+            <section id="dashboardView" class="view active">
+
+                <div class="section-heading">
+                    <h2>Application Overview</h2>
+                    <p>Track your job search progress.</p>
+                </div>
+
+                <!-- Statistics -->
+                <div class="stats-grid">
+
+                    <article class="stat-card">
+                        <p>Total Applications</p>
+                        <h2 id="totalApplications">0</h2>
+                    </article>
+
+                    <article class="stat-card">
+                        <p>Applied</p>
+                        <h2 id="appliedCount">0</h2>
+                    </article>
+
+                    <article class="stat-card">
+                        <p>Interviews</p>
+                        <h2 id="interviewCount">0</h2>
+                    </article>
+
+                    <article class="stat-card">
+                        <p>Selected</p>
+                        <h2 id="selectedCount">0</h2>
+                    </article>
+
+                </div>
+
+                <!-- Recent Applications -->
+                <section class="applications-panel">
+
+                    <div class="panel-heading">
+                        <div>
+                            <h2>Recent Applications</h2>
+                            <p>Your latest job applications.</p>
+                        </div>
+                    </div>
+
+                    <div class="table-wrapper">
+
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Company</th>
+                                    <th>Position</th>
+                                    <th>Status</th>
+                                    <th>Date</th>
+                                </tr>
+                            </thead>
+
+                            <tbody id="recentApplicationsBody">
+                            </tbody>
+                        </table>
+
+                        <p id="dashboardEmptyState">
+                            No applications yet. Add your first application!
+                        </p>
+
+                    </div>
+
+                </section>
+
+            </section>
+
+            <!-- Applications Page -->
+            <section id="applicationsView" class="view">
+
+                <div class="section-heading">
+                    <h2>My Applications</h2>
+                    <p>Manage all your job and internship applications.</p>
+                </div>
+
+                <div class="applications-panel">
+
+                    <div class="toolbar">
+
+                        <input
+                            type="search"
+                            id="searchInput"
+                            placeholder="Search companies or positions..."
+                        >
+
+                        <select id="statusFilter">
+                            <option value="all">All Statuses</option>
+                            <option value="Applied">Applied</option>
+                            <option value="Interview">Interview</option>
+                            <option value="Selected">Selected</option>
+                            <option value="Rejected">Rejected</option>
+                        </select>
+
+                    </div>
+
+                    <div class="table-wrapper">
+
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Company</th>
+                                    <th>Position</th>
+                                    <th>Location</th>
+                                    <th>Status</th>
+                                    <th>Applied Date</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+
+                            <tbody id="applicationsTableBody">
+                            </tbody>
+                        </table>
+
+                        <p id="applicationsEmptyState">
+                            No applications found.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+        </main>
+
+    </div>
+
+    <!-- Add/Edit Application Modal -->
+    <div id="applicationModal" class="modal hidden">
+
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h2 id="modalTitle">Add Application</h2>
+                <button type="button" id="closeModalBtn" aria-label="Close">
+                    &times;
+                </button>
+            </div>
+
+            <form id="applicationForm">
+
+                <label for="company">Company Name</label>
+                <input type="text" id="company" required maxlength="100">
+
+                <label for="position">Job Position</label>
+                <input type="text" id="position" required maxlength="100">
+
+                <label for="location">Location</label>
+                <input type="text" id="location" maxlength="100">
+
+                <label for="jobLink">Job Application Link</label>
+                <input type="url" id="jobLink">
+
+                <label for="status">Application Status</label>
+                <select id="status" required>
+                    <option value="Applied">Applied</option>
+                    <option value="Interview">Interview</option>
+                    <option value="Selected">Selected</option>
+                    <option value="Rejected">Rejected</option>
+                </select>
+
+                <label for="appliedDate">Application Date</label>
+                <input type="date" id="appliedDate" required>
+
+                <label for="notes">Notes</label>
+                <textarea id="notes" rows="3" maxlength="1000"
+                    placeholder="Add interview details or other notes..."></textarea>
+
+                <button type="submit" id="saveApplicationBtn">
+                    Save Application
+                </button>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</body>
+</html>
